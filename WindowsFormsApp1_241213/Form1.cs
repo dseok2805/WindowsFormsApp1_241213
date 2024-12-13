@@ -21,8 +21,8 @@ namespace WindowsFormsApp1_241213
             // 텍스트 박스에 메세지 출력
             textBox1_print.Text = "이것은\r\n멀티라인\r\n텍스트박스\r\n인데요.";
             // \r\n : 개행문자
-            int a = 0;
-            a = 999;
+            int a = 0; // int 형 a 변수를 선언함
+            a = 47; // a 변수를 변경함
         }
     }
 }
