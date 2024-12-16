@@ -24,7 +24,7 @@ namespace WindowsFormsApp1_241213
             int a = 0; // int 형 a 변수를 선언함
             a = 47; // a 변수를 변경함
 
-            string msg = "안녕"
+            string msg = "안녕";
         }
     }
 }
