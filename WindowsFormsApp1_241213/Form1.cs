@@ -25,6 +25,7 @@ namespace WindowsFormsApp1_241213
             a = 47; // a 변수를 변경함
 
             string msg = "안녕";
+            msg = "dseok";
         }
     }
 }
