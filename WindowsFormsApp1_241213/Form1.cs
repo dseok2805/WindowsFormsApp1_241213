@@ -26,7 +26,18 @@ namespace WindowsFormsApp1_241213
             //msg = "dseok";
 
             // 텍스트 박스에 메세지 출력
-            textBox1_print.Text = "어떤 결과가 나올까??";
+            textBox1_print.Text += "어떤 결과가 나올까??\r\n";
+            // 다음 줄에 어떻게 표시하지?? -> 해결 완료
+
+            double sample; // 변수를 선언함
+            sample = 1.421; // 선언한 변수를 사용할 때는 자료형을 붙이지 않음
+            double sample2 = 1.444; // 변수 초기화, 선언과 동시에 변수를 초기화함
+            // 초기화: 비어있는 변수에 처음으로 값이 들어가는 상황
+            textBox1_print.Text += sample.ToString();
+            // ToString: 문자열로 변환하는 함수
+            textBox1_print.Text += "\r\n";
+            textBox1_print.Text += sample2.ToString();
+            // Text라는 변수는 String형으로 이미 선언되어있음
 
 
         }
