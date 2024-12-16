@@ -19,14 +19,14 @@ namespace WindowsFormsApp1_241213
             byte whos_back_num = 47;
             short above_year_fa = -1;
             int fa_year = 4;
-            decimal fa_money = 3_600_000_000;
+            decimal fa_money_won = 3_600_000_000m;
             float ops_2024 = 0.861f;
             double avg_2024 = 0.3027295285;
 
-            textBox1_print.Text += (whos_back_num.GetType() + " " + "whos_back_num: " + whos_back_num + "\r\n");
-            textBox1_print.Text += (above_year_fa.GetType() + " " + "above_year_fa: " + above_year_fa + "\r\n");
-            textBox1_print.Text += (fa_year.GetType() + " " + "fa_year: " + fa_year + "\r\n");
-            textBox1_print.Text += (fa_money.GetType() + " " + "fa_money: " + fa_money + "\r\n");
+            textBox1_print.Text += (whos_back_num.GetType() + " " + "whos_back_num: " + whos_back_num + "번\r\n");
+            textBox1_print.Text += (above_year_fa.GetType() + " " + "above_year_fa: " + above_year_fa + "년\r\n");
+            textBox1_print.Text += (fa_year.GetType() + " " + "fa_year: " + fa_year + "년\r\n");
+            textBox1_print.Text += (fa_money_won.GetType() + " " + "fa_money_won: " + fa_money_won + "원\r\n");
             textBox1_print.Text += (ops_2024.GetType() + " " + "ops_2024: " + ops_2024 + "\r\n");
             textBox1_print.Text += (avg_2024.GetType() + " " + "avg_2024: " + avg_2024 + "\r\n");
         }
