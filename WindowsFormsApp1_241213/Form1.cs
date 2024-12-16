@@ -14,17 +14,21 @@ namespace WindowsFormsApp1_241213
     {
         public Form1()
         {
-            InitializeComponent(); // 창을 생성하는 소스코드, 메모리상에서 데이터로만 생성됨
-            // Program.cs에서 윈도우에서 볼 수 있도록 창을 띄워줌
-            // MessageBox.Show("하하하하하핳하"); // 메세지박스를 출력할 수 있음
+            InitializeComponent();
+            // byte, short, int, float, double, decimal 변수를 선언함
+            byte whos_back_num = 47;
+            short above_year_fa = -1;
+            int fa_year = 4;
+            decimal fa_money = 3_600_000_000;
+            float ops_2024 = 0.861f;
+            double avg_2024 = 0.3027295285;
 
-            // 텍스트 박스에 메세지 출력
-            textBox1_print.Text = "이것은\r\n멀티라인\r\n텍스트박스\r\n인데요.";
-            // \r\n : 개행문자
-            int a = 0; // int 형 a 변수를 선언함
-            a = 47; // a 변수를 변경함
-
-            string msg = "안녕";
+            textBox1_print.Text += (whos_back_num.GetType() + " " + "whos_back_num: " + whos_back_num + "\r\n");
+            textBox1_print.Text += (above_year_fa.GetType() + " " + "above_year_fa: " + above_year_fa + "\r\n");
+            textBox1_print.Text += (fa_year.GetType() + " " + "fa_year: " + fa_year + "\r\n");
+            textBox1_print.Text += (fa_money.GetType() + " " + "fa_money: " + fa_money + "\r\n");
+            textBox1_print.Text += (ops_2024.GetType() + " " + "ops_2024: " + ops_2024 + "\r\n");
+            textBox1_print.Text += (avg_2024.GetType() + " " + "avg_2024: " + avg_2024 + "\r\n");
         }
     }
 }
