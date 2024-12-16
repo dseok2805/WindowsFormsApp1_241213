@@ -23,6 +23,8 @@ namespace WindowsFormsApp1_241213
             // \r\n : 개행문자
             int a = 0; // int 형 a 변수를 선언함
             a = 47; // a 변수를 변경함
+
+            string msg = "안녕"
         }
     }
 }
