@@ -16,60 +16,37 @@ namespace WindowsFormsApp1_241213
         public Form1()
         {
             InitializeComponent();
+            // Ctrl + K + C
+            // Ctrl + K + U 한꺼번에 주석 처리 가능
+            // # region, #endregion 활용해 묶을 수 있음
+            string keyword = "멈추지 않는 한 얼마나 천천히 가는지는 중요하지 않다. -공자";
+            string str1 = keyword.Remove(keyword.IndexOf("-")); // 멈추지 않는 한 얼마나 천천히 가는지는 중요하지 않다. 
 
-            // 10칸 크기의 문자열 배열을 선언함
-            string[] myArray = new string[10];
-
-            // IndexOf() 활용
-            string str1 = "동해 물과 백두산이";
-            // textBox1_print.Text = str1.IndexOf("백두산").ToString() + "\r\n"; -> "백두산" 이라는 배열의 시작지점인 6이 출력됨
-            myArray[0] = str1.IndexOf("백두산").ToString();
-
-            // LastIndexOf() 활용
-            string str2 = "토요일에 먹는 토마토";
-            // textBox1_print.Text = str2.LastIndexOf("토").ToString() + "\r\n"; -> 뒤에서부터 찾기에 마지막 "토"의 위치인 10이 출력됨
-            myArray[1] = str2.LastIndexOf("토").ToString();
-
-            // Contains() 활용
-            string str3 = "질서 있는 퇴장";
-            // textBox1_print.Text = str3.Contains("퇴") + "\r\n"; -> str3 문자열에 "퇴" 라는 문자열이 존재하기에 True가 출력됨
-            myArray[2] = str3.Contains("퇴").ToString();
-
-            // Replace() 활용
-            string str4 = "그 사람의 그림자는 그랬다.";
-            str4 = str4.Replace("그", "이"); // Replace(바꾸고 싶은 문자, 바꿀 문자)
-            // textBox1_print.Text = str4 + "\r\n"; // 그 사람의 그림자는 그랬다. -> 이 사람의 이림자는 이랬다. 로 변경되어 출력됨
-            myArray[3] = str4;
-
-            // Insert() 활용
-            string str5 = "삼성 갤럭시";
-            str5 = str5.Insert(str5.IndexOf(" "), "애플"); // Insert(삽입 인덱스, 삽입할 문자)
-            // textBox1_print.Text = str5 + "\r\n"; // 삼성애플 갤럭시로 출력됨
-            myArray[4] = str5;
-
-            // Remove() 활용
-            string str6 = "오늘은 왠지 더 배고프다";
-            str6 = str6.Remove(str6.IndexOf("더"), 1); // Remove(삭제할 시작 인덱스, 삭제할 글자 수)
-            // textBox1_print.Text = str6 + "\r\n"; //  오늘은 왠지  배고프다 로 출력됨
-            myArray[5] = str6;
-
-            // split() 활용
-            string str7 = "이름, 나이, 전화번호";
-            string[] tempArray = str7.Split(','); // 3칸의 배열이 생성될 것임
+            // IndexOf() 또는 LastIndexOf()를 사용하여 단어를 검색하고,
+            // SubString() 또는 Remove() 그리고 Split()을 사용하여 “얼마나”, “천천히”, “가는지” 세 개 단어로 나누어 배열의 요소에 각각 저장
+            // 1. 얼마나 천천히 가는지는 으로 빼내기
+            string str2 = keyword.Remove(0, keyword.IndexOf("얼마나")); // 얼마나 천천히 가는지는 중요하지 않다. -공자
+            str2 = str2.Remove(str2.IndexOf("중요")); // 얼마나 천천히 가는지는 
+            str2 = str2.Remove(str2.LastIndexOf("는")); // 얼마나 천천히 가는지
+            string[] splitArray = str2.Split(' '); // 공백을 기준으로 3칸의 배열이 생성될 것임
             // 기존 배열에 하나씩 할당
-            myArray[6] = tempArray[0];
-            myArray[7] = tempArray[1]; // _나이
-            myArray[8] = tempArray[2]; // _전화번호 띄워쓰기가 같이 저장됨 그렇게 안되려면 "이름,나이,전화번호" 이렇게 저장하면 됨
+            string[] split_str2 = new string[3];
+            split_str2[0] = splitArray[0]; // 얼마나
+            split_str2[1] = splitArray[1]; // 천천히
+            split_str2[2] = splitArray[2]; // 가는지
 
-            // SubString() 활용
-            string str8 = "우리 나라 만세";
-            // textBox1_print.Text = str8.Substring(str8.IndexOf("나라"), 2) + "\r\n"; // Substring(시작 인덱스, 문자열 갯수)
-            myArray[9] = str8.Substring(str8.IndexOf("나라"), 2);
 
-            for (int i = 0; i < myArray.Length; i++)
-            {
-                textBox1_print.Text += myArray[i] + "\r\n";
-            }
+            // “.”과 “-”를 제거하고, 모든 공백 문자를 “,”로 바꾸기
+            string str3 = keyword.Remove(keyword.IndexOf("."), 1); // 멈추지 않는 한 얼마나 천천히 가는지는 중요하지 않다 -공자
+            str3 = str3.Remove(str3.IndexOf("-"), 1); // 멈추지 않는 한 얼마나 천천히 가는지는 중요하지 않다 공자
+            str3 = str3.Replace(" ", ","); // 멈추지,않는,한,얼마나,천천히,가는지는,중요하지,않다,공자
+
+            textBox1_print.Text += str1 + "\r\n";
+            textBox1_print.Text += split_str2[0] + "\r\n";
+            textBox1_print.Text += split_str2[1] + "\r\n";
+            textBox1_print.Text += split_str2[2] + "\r\n";
+            textBox1_print.Text += str3;
         }
+
     }
 }
