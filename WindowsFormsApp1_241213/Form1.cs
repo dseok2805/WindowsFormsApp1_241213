@@ -16,28 +16,27 @@ namespace WindowsFormsApp1_241213
         public Form1()
         {
             InitializeComponent();
-            string keyword = "멈추지 않는 한 얼마나 천천히 가는지는 중요하지 않다. -공자";
-            string word = keyword.Substring(keyword.IndexOf("-"),3); // -공자를 찾기 위해 -부터 3글자를 Substring()
-            string str1 = keyword.Remove(keyword.IndexOf(word)); // 위에서 Substring()한 word를 활용해 Remove()
-            // 멈추지 않는 한 얼마나 천천히 가는지는 중요하지 않다. 
+            int a = 10;
+            int b = 3;
+            int[] result = new int[2];
+            result = cal(a, b);
+            textBox1_print.Text += a + " 나누기 " + b + "의 결과\r\n";
+            textBox1_print.Text += "몫: " + result[0] + ", 나머지: " + result[1];
 
-            // IndexOf() 또는 LastIndexOf()를 사용하여 단어를 검색하고,
-            // SubString() 또는 Remove() 그리고 Split()을 사용하여 “얼마나”, “천천히”, “가는지” 세 개 단어로 나누어 배열의 요소에 각각 저장
-            string[] split_str2 = new string[3];
-            split_str2[0] = keyword.Substring(keyword.IndexOf("얼마나"), 3); // 얼마나
-            split_str2[1] = keyword.Substring(keyword.IndexOf("천천히"), 3); // 천천히
-            split_str2[2] = keyword.Substring(keyword.IndexOf("가는지"), 3); // 가는지
-
-            // “.”과 “-”를 제거하고, 모든 공백 문자를 “,”로 바꾸기
-            string str3 = keyword.Remove(keyword.IndexOf("."), 1); // 멈추지 않는 한 얼마나 천천히 가는지는 중요하지 않다 -공자
-            str3 = str3.Remove(str3.IndexOf("-"), 1); // 멈추지 않는 한 얼마나 천천히 가는지는 중요하지 않다 공자
-            str3 = str3.Replace(" ", ","); // 멈추지,않는,한,얼마나,천천히,가는지는,중요하지,않다,공자
-
-            textBox1_print.Text += str1 + "\r\n";
-            textBox1_print.Text += split_str2[0] + "\r\n";
-            textBox1_print.Text += split_str2[1] + "\r\n";
-            textBox1_print.Text += split_str2[2] + "\r\n";
-            textBox1_print.Text += str3;
+        }
+        // 함수 구현
+        //1. int형 숫자 두 개를 입력 받기
+        //2. 첫 번째 입력 값을 두 번째 입력 값으로 나눔
+        //3. 나눠진 값은 배열의 첫 번째 요소에 저장
+        //4. 나머지 값은 배열의 두 번째 요소에 저장
+        //5. 위 배열을 반환
+        int[] cal(int x, int y) // int로 선언 후 int 배열을 반환하려면 에러가 뜸, int[] 형으로 선언해야함
+                              // CS0029 cannot implicitly convert type int to int
+        {
+            int[] cal_array = new int[2];
+            cal_array[0] = x / y;
+            cal_array[1] = x % y;
+            return cal_array;
         }
     }
 }
