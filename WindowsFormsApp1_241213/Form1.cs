@@ -16,6 +16,8 @@ namespace WindowsFormsApp1_241213
         Random randomObj = new Random();
         public Form1()
         {
+            // Form 생성시 최초 1회만 생성됨, 따라서 여기서 코드를 짜는건 비추임
+            // 초기화 하는 용도
             InitializeComponent();
         }
 
@@ -25,11 +27,15 @@ namespace WindowsFormsApp1_241213
             bool my_select;
 
             if (string.IsNullOrEmpty(textBox_input.Text)) // textBox_input.Text에 값이 없으면, 라디오 버튼을 활용
+                // 0보다 크다라는 연산자를 활용할 수도 있음
             {
                 // TextBox가 비어있으면 라디오 버튼 값을 사용
                 if (radioButton_True.Checked) // True 버튼이 눌려있으면
                 {
                     my_select = true;
+                    // coin_top_bottom()을 실행시키고
+                    // print_result_coin(coin_top_bottom()) 처럼 함수 두개를 한꺼번에 사용하기보단
+                    // 하나의 함수에는 하나의 기능만 수행하는 것이 깔끔함
                     print_result_coin(my_select);
                 }
                 else // 버튼이 2개이고 True 버튼이 눌리지 않으면 False가 눌렸을 것이니까
@@ -39,6 +45,7 @@ namespace WindowsFormsApp1_241213
                 }
             }
             else // textBox_input.Text에 값이 있으면, 입력값을 활용
+            // else if로 적용할 수도 있음
             {
                 if (textBox_input.Text == "True" || textBox_input.Text == "False") // 입력된 값이 True, False 일때만
                 {
