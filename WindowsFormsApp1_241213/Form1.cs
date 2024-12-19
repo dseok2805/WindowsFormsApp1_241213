@@ -26,33 +26,34 @@ namespace WindowsFormsApp1_241213
             string message = textBox_input.Text; // textBox_input.Text를 string형 message 변수로 전달
             // true 옵션은 대소문자를 구별하지 않겠다는 뜻
             Day day_input = InputCheck(message); // message를 Day형 변수로 변환하기 위해 InputCheck 함수로 전달
-            switch (day_input) // switch의 입력으로 Day형 변수 day_input를 받음
+            int day_input_to_int = (int)day_input;
+            switch (day_input_to_int) // switch의 입력으로 Day형 변수 day_input를 받음
             {
-                case Day.monday:
+                case 0: // Day.monday
                     textBox_result.Text = "하, 왜 오늘 월요일이야";
                     break;
 
-                case Day.tuesday:
+                case 1: // Day.tuesday
                     textBox_result.Text = "하, 왜 아직 화요일이야, 야구나 보자!";
                     break;
 
-                case Day.wednesday:
+                case 2: // Day.wednesday
                     textBox_result.Text = "하, 왜 아직 수요일이야, 야구나 보자!";
                     break;
 
-                case Day.thusday:
+                case 3: // Day.thusday
                     textBox_result.Text = "하, 왜 아직 목요일이야, 오늘은 야구보고 이혼숙려캠프 보자!";
                     break;
 
-                case Day.friday:
+                case 4: // Day.friday
                     textBox_result.Text = "와! 오늘 금요일이네 늦게 자고 늦게 일어나야지!";
                     break;
 
-                case Day.saturday:
+                case 5: // Day.saturday
                     textBox_result.Text = "와! 오늘 토요일이네 내일도 늦게 일어나야지!";
                     break;
 
-                case Day.sunday:
+                case 6: // Day.sunday
                     textBox_result.Text = "하, 내일 왜 월요일이야";
                     break;
 
@@ -67,7 +68,7 @@ namespace WindowsFormsApp1_241213
             monday, // 0
             tuesday, // 1
             wednesday, // 2
-            thusday, // 3
+            thursday, // 3
             friday, // 4
             saturday, // 5
             sunday, // 6
@@ -84,8 +85,8 @@ namespace WindowsFormsApp1_241213
                     return Day.tuesday;
                 case "wednesday":
                     return Day.wednesday;
-                case "thusday":
-                    return Day.thusday;
+                case "thursday":
+                    return Day.thursday;
                 case "friday":
                     return Day.friday;
                 case "saturday":
