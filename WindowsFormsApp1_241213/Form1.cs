@@ -13,7 +13,7 @@ namespace WindowsFormsApp1_241213
 {
     public partial class Form1 : Form
     {
-        Random randomObj = new Random();
+        Random randomObj = new Random(); // 랜덤한 점수를 생성하기 위한 함수
         public Form1()
         {
             // Form 생성시 최초 1회만 생성됨, 따라서 여기서 코드를 짜는건 비추임
@@ -23,80 +23,21 @@ namespace WindowsFormsApp1_241213
 
         private void button_input_Click(object sender, EventArgs e)
         {
-            string message = textBox_input.Text; // textBox_input.Text를 string형 message 변수로 전달
-            // true 옵션은 대소문자를 구별하지 않겠다는 뜻
-            Day day_input = InputCheck(message); // message를 Day형 변수로 변환하기 위해 InputCheck 함수로 전달
-            int day_input_to_int = (int)day_input;
-            switch (day_input_to_int) // switch의 입력으로 Day형 변수 day_input를 받음
+            int num_Student = int.Parse(textBox_input.Text); // 학생 수를 입력받아 int형 변수 num_Student에 전달함
+            string name_Student;
+            int score_Student;
+            textBox_result.Text = "===============학생 성적표===============" + "\r\n";
+            for (int i = 0; i < num_Student; i++) // 학생의 수 만큼 반복함
             {
-                case 0: // Day.monday
-                    textBox_result.Text = "하, 왜 오늘 월요일이야";
-                    break;
-
-                case 1: // Day.tuesday
-                    textBox_result.Text = "하, 왜 아직 화요일이야, 야구나 보자!";
-                    break;
-
-                case 2: // Day.wednesday
-                    textBox_result.Text = "하, 왜 아직 수요일이야, 야구나 보자!";
-                    break;
-
-                case 3: // Day.thusday
-                    textBox_result.Text = "하, 왜 아직 목요일이야, 오늘은 야구보고 이혼숙려캠프 보자!";
-                    break;
-
-                case 4: // Day.friday
-                    textBox_result.Text = "와! 오늘 금요일이네 늦게 자고 늦게 일어나야지!";
-                    break;
-
-                case 5: // Day.saturday
-                    textBox_result.Text = "와! 오늘 토요일이네 내일도 늦게 일어나야지!";
-                    break;
-
-                case 6: // Day.sunday
-                    textBox_result.Text = "하, 내일 왜 월요일이야";
-                    break;
-
-                default: // 사용자가 요일 이외의 문자열을 입력하면 오류를 출력함
-                    textBox_result.Text = "올바른 요일을 입력해주세영";
-                    break;
+                score_Student = randomObj.Next(0, 100); // 0~100점 사이의 랜덤한 점수를 생성함
+                name_Student = "학생" + (i+1).ToString(); // "학생1~학생num_Student"까지 이름을 설정
+                textBox_result.Text += make_stduent_score_text(name_Student, score_Student);
             }
         }
 
-        enum Day // 요일을 enum 형 변수로 지정함
+        string make_stduent_score_text(string name, int score)
         {
-            monday, // 0
-            tuesday, // 1
-            wednesday, // 2
-            thursday, // 3
-            friday, // 4
-            saturday, // 5
-            sunday, // 6
-            fail // 7, 잘못 입력된 모든 경우를 여기로 변환
-        }
-
-        Day InputCheck(string message) // message를 Day형 변수로 바꿈
-        {
-            switch (message)
-            {
-                case "monday":
-                    return Day.monday;
-                case "tuesday":
-                    return Day.tuesday;
-                case "wednesday":
-                    return Day.wednesday;
-                case "thursday":
-                    return Day.thursday;
-                case "friday":
-                    return Day.friday;
-                case "saturday":
-                    return Day.saturday;
-                case "sunday":
-                    return Day.sunday;
-                default: // 요일이 아닌 다른 입력이 들어왔을 경우
-                    return Day.fail;
-
-            }
+            return name + "의 점수: " + score.ToString() + "\r\n";
         }
     }
 }

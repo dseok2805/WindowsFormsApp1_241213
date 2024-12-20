@@ -30,6 +30,7 @@
         {
             this.button_input = new System.Windows.Forms.Button();
             this.textBox_result = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             textBox_input = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
@@ -55,16 +56,26 @@
             // 
             // textBox_input
             // 
-            textBox_input.Location = new System.Drawing.Point(5, 6);
+            textBox_input.Location = new System.Drawing.Point(93, 6);
             textBox_input.Name = "textBox_input";
-            textBox_input.Size = new System.Drawing.Size(622, 21);
+            textBox_input.Size = new System.Drawing.Size(534, 21);
             textBox_input.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(10, 10);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(77, 12);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "학생 수 입력:";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox_result);
             this.Controls.Add(this.button_input);
             this.Controls.Add(textBox_input);
@@ -79,6 +90,7 @@
 
         private System.Windows.Forms.Button button_input;
         private System.Windows.Forms.TextBox textBox_result;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox_input;
     }
 }
