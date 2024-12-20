@@ -24,45 +24,25 @@ namespace WindowsFormsApp1_241213
             textBox_result.Text = "가위바위보 게임 시작~!\r\n";
         }
 
-        private void button_input_Click(object sender, EventArgs e)
+        private void button_Rock_Click(object sender, EventArgs e)
         {
-            com_num = randomObj.Next(0, 3); // 컴퓨터의 선택은 0, 1, 2
+            user_select = "바위";
+            com_select = computer_select();
+            RockScissorsPaper_Result(user_select, com_select);
+        }
 
-            // 컴퓨터의 선택을 string으로 변환
-            if (com_num == 0) // 컴퓨터의 선택이 0이면
-            {
-                com_select = "바위";
-            }
-            else if (com_num == 1) // 컴퓨터의 선택이 1이면
-            {
-                com_select = "가위";
-            }
-            else // 컴퓨터의 선택이 2면
-            {
-                com_select = "보";
-            }
+        private void button_Scissors_Click(object sender, EventArgs e)
+        {
+            user_select = "가위";
+            com_select = computer_select();
+            RockScissorsPaper_Result(user_select, com_select);
+        }
 
-            // 사용자의 선택을 string으로 변환
-            if (radioButton_Rock.Checked) // 사용자가 바위 버튼을 선택했으면
-            {
-                user_select = "바위";
-            }
-            else if (radioButton_Scissors.Checked) // 사용자가 가위 버튼을 선택했으면
-            {
-                user_select = "가위";
-            }
-            else // 사용자가 보 버튼을 선택했으면
-            {
-                user_select = "보";
-            }
-
-            while ((score[0] < 3) && (score[1] < 3)) // 사용자, 컴퓨터의 점수가 3점이 되면 반복문은 끝남
-            {
-                score = RockScissorsPaper_Result(user_select, com_select);
-            }
-            string winner = score[0] == 3 ? "사용자" : "컴퓨터"; // 누가 3점이 되었는지 판별함
-            textBox_result.Text += "결과: " + winner + "가 이겼습니다!\r\n\r\n";
-            ResetGame(); // 게임 초기화
+        private void button_Paper_Click(object sender, EventArgs e)
+        {
+            user_select = "보";
+            com_select = computer_select();
+            RockScissorsPaper_Result(user_select, com_select);
         }
 
         int[] RockScissorsPaper_Result(string user_select, string com_select)
@@ -89,8 +69,38 @@ namespace WindowsFormsApp1_241213
             // 점수 상태 출력
             textBox_result.Text += "현재 점수 -> 사용자: " + score[0].ToString() + " , 컴퓨터: " + score[1].ToString() + "\r\n";
 
+            // 게임 종료 체크
+            if (score[0] == 3 || score[1] == 3)
+            {
+                string winner = score[0] == 3 ? "사용자" : "컴퓨터";
+                textBox_result.Text += "결과: " + winner + "가 이겼습니다!\r\n\r\n";
+                ResetGame(); // 게임 초기화
+            }
+
 
             return score;
+        }
+
+        string computer_select()
+        {
+            com_num = randomObj.Next(0, 3); // 컴퓨터의 선택은 0, 1, 2
+            string computer_result;
+
+            // 컴퓨터의 선택을 string으로 변환
+            if (com_num == 0) // 컴퓨터의 선택이 0이면
+            {
+                computer_result = "바위";
+            }
+            else if (com_num == 1) // 컴퓨터의 선택이 1이면
+            {
+                computer_result = "가위";
+            }
+            else // 컴퓨터의 선택이 2면
+            {
+                computer_result = "보";
+            }
+
+            return computer_result;
         }
         void ResetGame()
         {
