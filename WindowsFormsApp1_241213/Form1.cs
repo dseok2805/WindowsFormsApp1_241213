@@ -23,13 +23,18 @@ namespace WindowsFormsApp1_241213
 
         private void button_input_Click(object sender, EventArgs e)
         {
+            // 예외처리를 꼭 해줘야함
+            // if (int.TryParse(textBox_input.Text, out studentCount))
+            // TryParse -> 변환에 성공했을 때 true, 실패하면 false 반환함
             int num_Student = int.Parse(textBox_input.Text); // 학생 수를 입력받아 int형 변수 num_Student에 전달함
             string name_Student;
             int score_Student;
             textBox_result.Text = "===============학생 성적표===============" + "\r\n";
             for (int i = 0; i < num_Student; i++) // 학생의 수 만큼 반복함
             {
-                score_Student = randomObj.Next(0, 100); // 0~100점 사이의 랜덤한 점수를 생성함
+                score_Student = randomObj.Next(0, 101); // 0~100점 사이의 랜덤한 점수를 생성함
+                // 최대값은 포함이 안됨
+                // Next : 다음 Seed를 써서 매번 랜덤값을 다르게 설정하겠다 라는 뜻
                 name_Student = "학생" + (i+1).ToString(); // "학생1~학생num_Student"까지 이름을 설정
                 textBox_result.Text += make_stduent_score_text(name_Student, score_Student);
             }
