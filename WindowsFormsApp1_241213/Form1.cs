@@ -14,35 +14,89 @@ namespace WindowsFormsApp1_241213
     public partial class Form1 : Form
     {
         Random randomObj = new Random(); // 랜덤한 점수를 생성하기 위한 함수
+        string user_select;
+        string com_select;
+        int com_num;
+        int[] score = new int[2];
         public Form1()
         {
-            // Form 생성시 최초 1회만 생성됨, 따라서 여기서 코드를 짜는건 비추임
-            // 초기화 하는 용도
             InitializeComponent();
+            textBox_result.Text = "가위바위보 게임 시작~!\r\n";
         }
 
         private void button_input_Click(object sender, EventArgs e)
         {
-            // 예외처리를 꼭 해줘야함
-            // if (int.TryParse(textBox_input.Text, out studentCount))
-            // TryParse -> 변환에 성공했을 때 true, 실패하면 false 반환함
-            int num_Student = int.Parse(textBox_input.Text); // 학생 수를 입력받아 int형 변수 num_Student에 전달함
-            string name_Student;
-            int score_Student;
-            textBox_result.Text = "===============학생 성적표===============" + "\r\n";
-            for (int i = 0; i < num_Student; i++) // 학생의 수 만큼 반복함
+            com_num = randomObj.Next(0, 3); // 컴퓨터의 선택은 0, 1, 2
+
+            // 컴퓨터의 선택을 string으로 변환
+            if (com_num == 0) // 컴퓨터의 선택이 0이면
             {
-                score_Student = randomObj.Next(0, 101); // 0~100점 사이의 랜덤한 점수를 생성함
-                // 최대값은 포함이 안됨
-                // Next : 다음 Seed를 써서 매번 랜덤값을 다르게 설정하겠다 라는 뜻
-                name_Student = "학생" + (i+1).ToString(); // "학생1~학생num_Student"까지 이름을 설정
-                textBox_result.Text += make_stduent_score_text(name_Student, score_Student);
+                com_select = "바위";
             }
+            else if (com_num == 1) // 컴퓨터의 선택이 1이면
+            {
+                com_select = "가위";
+            }
+            else // 컴퓨터의 선택이 2면
+            {
+                com_select = "보";
+            }
+
+            // 사용자의 선택을 string으로 변환
+            if (radioButton_Rock.Checked) // 사용자가 바위 버튼을 선택했으면
+            {
+                user_select = "바위";
+            }
+            else if (radioButton_Scissors.Checked) // 사용자가 가위 버튼을 선택했으면
+            {
+                user_select = "가위";
+            }
+            else // 사용자가 보 버튼을 선택했으면
+            {
+                user_select = "보";
+            }
+
+            while ((score[0] < 3) && (score[1] < 3)) // 사용자, 컴퓨터의 점수가 3점이 되면 반복문은 끝남
+            {
+                score = RockScissorsPaper_Result(user_select, com_select);
+            }
+            string winner = score[0] == 3 ? "사용자" : "컴퓨터"; // 누가 3점이 되었는지 판별함
+            textBox_result.Text += "결과: " + winner + "가 이겼습니다!\r\n\r\n";
+            ResetGame(); // 게임 초기화
         }
 
-        string make_stduent_score_text(string name, int score)
+        int[] RockScissorsPaper_Result(string user_select, string com_select)
         {
-            return name + "의 점수: " + score.ToString() + "\r\n";
+            textBox_result.Text += "사용자의 선택: " + user_select + "\r\n";
+            textBox_result.Text += "컴퓨터의 선택: " + com_select + "\r\n";
+
+            // 가위바위보 결과 계산
+            if (user_select == com_select)
+            {
+                textBox_result.Text += "결과: 비겼습니다!\r\n\r\n";
+            }
+            else if ((user_select == "가위" && com_select == "보") || (user_select == "바위" && com_select == "가위") || (user_select == "보" && com_select == "바위"))
+            {
+                score[0]++;
+                textBox_result.Text += "결과: 사용자가 이겼습니다!\r\n\r\n";
+            }
+            else
+            {
+                score[1]++;
+                textBox_result.Text += "결과: 컴퓨터가 이겼습니다!\r\n\r\n";
+            }
+
+            // 점수 상태 출력
+            textBox_result.Text += "현재 점수 -> 사용자: " + score[0].ToString() + " , 컴퓨터: " + score[1].ToString() + "\r\n";
+
+
+            return score;
+        }
+        void ResetGame()
+        {
+            score[0] = 0;
+            score[1] = 0;
+            textBox_result.Text += "\r\n게임이 초기화되었습니다!\r\n\r\n";
         }
     }
 }
